@@ -1,7 +1,7 @@
 <?php
 session_start();  
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true ){
-header("location: logint.php"); //This means agar aapka "$_SESSION['loggedin']" set nhi hai ya phir  "$_SESSION['loggedin']" true nhi hai toh aapko redirect kardiya jayega login page par (This sign '!' means 'not')
+header("location: logint.php");
 exit; 
 }
 ?>
@@ -125,7 +125,7 @@ exit;
                     </p>
                 </div>
             </div>
-            <button><a href="/projects/university signup/Lo.php">Logout</a></button>
+            <button><a href="Lo.php">Logout</a></button>
         </div>
     </section>
 </body>

@@ -65,7 +65,7 @@ $cpassword = $_POST['cpassword'];
      }
     ?>
 
-      <form action="/projects/university signup/sign in.php" method="POST">
+      <form action="index.php" method="POST">
         <h2>sign in:</h2>
           <input type="text"  name="name" placeholder="Name:">
           <input type="email" name="email" placeholder="Email:">
@@ -82,7 +82,7 @@ $cpassword = $_POST['cpassword'];
             }
           ?>
           <input type="submit" value="sign up" name="submit">
-          <p class="link">Already Having Account <a href="//localhost/Projects/UNIVERSITY SIGNUP/logint.php" class="linka">Log in</a></p>
+          <p class="link">Already Having Account <a href="logint.php" class="linka">Log in</a></p>
       </form>
     </div>
   </div>

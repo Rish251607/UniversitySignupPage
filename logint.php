@@ -53,7 +53,7 @@ if($login){
   ?> 
   <!-- Login Form -->
   <div class="container">
-    <form action="/projects/university signup/logint.php" method="POST">
+    <form action="logint.php" method="POST">
       <h2>Login:</h2>
       <input type="email" name="email" placeholder="Email Address:">
       <input type="password" name="password" placeholder="password:">
