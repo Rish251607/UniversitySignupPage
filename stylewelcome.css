@@ -1,0 +1,61 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+.background {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+}
+
+body {
+    background-image: url('oxford.jpg');
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0px 100px 0px 100px;
+    color: white;
+}
+
+.container h1 {
+
+    font-size: 60px;
+    text-align: center;
+    background: -webkit-linear-gradient(45deg, brown, white 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about {
+    margin: 0 80px;
+    background: -webkit-linear-gradient(45deg, greenyellow, white 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+.cont2 {
+    font-size: 18px;
+}
+
+button {
+    color: black;
+    border: 1px solid black;
+    background: rgb(140, 139, 139);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 20px 0 20px 81px;        
+    cursor: pointer;
+    /*Due to this an curser comes when we slide to submit*/
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #69bd6c;
+    /*Isko lagaani sai jab hum,cursor ko sumbit par laayengai toh woh green ho jayega and uske upar hand ban kar aayega */
+}
