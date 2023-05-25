@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         <form action="logint.php" method="post">
             <h2>Please Login Here:</h2>
             <?php echo $err ?> <br>
-            <input type="text" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entname">
+            <input type="text" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
 
             <input type="password" name="password" id="exampleInputPassword1" placeholder="Enter Password">
 
