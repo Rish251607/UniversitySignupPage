@@ -117,21 +117,10 @@
     color: brown;
   }
 
-  .noerror{
-    color: green;
-  }
-
-  .error{
-    color: red;
-  }
-
-  .alert-danger{
-    color: red;
-  }
-
   .alert{
-    color: green;
+    color: red;
   }
+
 
   @media screen and (max-width:1455px) {
     h1 {

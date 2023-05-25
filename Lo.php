@@ -1,8 +1,8 @@
 <?php
 session_start();
+$_SESSION = array();
 session_unset();
-session_destroy();  
-header("location: logout.php"); 
-exit;
+session_destroy();
+header("location: logout.php");
+
 ?>
-</div>

@@ -1,66 +1,89 @@
 <?php
-$login = false;
-$showError = false;
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "university";
-    $conn = Mysqli_connect($servername,$username,$password,$database);
-    if(!$conn){
-        die("ERROR ".Mysqli_connect_error());
-    }
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $exists = false;  //this is used to confirom tha same username ke koi 2 id na ho.
-
-  $sql = "SELECT * FROM `details` WHERE email = '$email' AND password = '$password'";
-  $result = mysqli_query($conn, $sql);   
-  $num = mysqli_num_rows($result);  //This 'mysqli_num_rows' will tell us that how many results are inserted in database 
-    if ($num == 1){
-        $login = true;   //this is used for alerting
-         session_start();
-         $_SESSION['loggedin'] = true;
-        header("location: welcomet.php"); //This header is used to redirct whaich means login ke baad aap welcome page par chale jaayengai
-    }
-  else{
-    $showError = "Invalid credentials";
+$servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "university";
+  $conn = Mysqli_connect($servername,$username,$password,$database);
+  if(!$conn){
+      die("ERROR ".Mysqli_connect_error());
   }
+
+$name = $password = "";
+$err = "";
+
+// if request method is post
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    if(empty(trim($_POST['name'])) || empty(trim($_POST['password']))){
+        $err = '<span class="alert">*Please enter name + password</span>';
+    }
+    else{
+        $name = trim($_POST['name']);
+        $password = trim($_POST['password']);
+    }
+
+
+    if(empty($err))
+    {
+        $sql = "SELECT sno, name, password FROM `details` WHERE name = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $param_name);
+        $param_name = $name;
+        
+        // Try to execute this statement
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                mysqli_stmt_bind_result($stmt, $id, $name, $hashed_password);
+                if(mysqli_stmt_fetch($stmt)){
+                    if(password_verify($password, $hashed_password)){
+                        // This means the password is correct. Allow the user to log in.
+                        session_start();
+                        $_SESSION["name"] = $name;
+                        $_SESSION["loggedin"] = true;
+
+                        // Redirect user to welcome page
+                        header("location: welcomet.php");
+                        exit();
+                    }
+                     else{
+                         $err = '<span class="alert">*incorrect password</span>';
+                     }
+                }
+            }
+             else{
+                 $err = '<span class="alert">*Incorrect name</span>';
+             }
+        }
+        else{
+            $err = '<span class="alert">Something went wrong. Please try again later.</span>';
+        }
+    } 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login to xyz</title>
-  <link rel="stylesheet" href="stylelogin.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to xyz</title>
+    <link rel="stylesheet" href="stylelogin.css">
 </head>
 
 <body>
-  <?php
-if($login){
-    echo ' <div class="alert">Congratulations! You are successfully logged in. </div> ';
-  }
-  ?>   
-  <?php
-  if($showError){
-    echo ' <div class="alert-danger">Error! '.$showError.'</div> ';
-  }
-  ?> 
-  <!-- Login Form -->
-  <div class="container">
-    <form action="logint.php" method="POST">
-      <h2>Login:</h2>
-      <input type="email" name="email" placeholder="Email Address:">
-      <input type="password" name="password" placeholder="password:">
-      <br>
-      <input type="submit" value="Login" name="Login">
-    </form>
-  </div>
+    <!-- Login Form -->
+    <div class="container">
+        <form action="logint.php" method="post">
+            <h2>Please Login Here:</h2>
+            <?php echo $err ?> <br>
+            <input type="text" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entname">
+
+            <input type="password" name="password" id="exampleInputPassword1" placeholder="Enter Password">
+
+            <input type="submit" value="Login" name="Login">
+        </form>
+    </div>
 </body>
 
 </html>
