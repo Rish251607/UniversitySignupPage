@@ -120,11 +120,7 @@ if (empty($name_err) && empty($email_err) && empty($password_err) && empty($conf
 <head>
     <title> sign in XYZ University</title>
     <link rel="stylesheet" href="styleindex.css">
-    <style>
-      .alert{
-    color: red;
-  }
-    </style>
+
 </head>
 
 <body>
