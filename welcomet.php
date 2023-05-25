@@ -24,7 +24,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
             </div>
             <div class="about">
                 <div class="cont2">
-                    <h3><?php echo "Welcome ". $_SESSION['name']?>,welcome to xyz universty</h3>
+                    <h3><?php echo "Welcome ". $_SESSION['name']?>,to xyz universty</h3>
                     <p>XYZ University is one of the most prestigious and renowned institutions of higher education in
                         the
                         world.
